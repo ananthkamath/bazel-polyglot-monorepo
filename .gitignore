@@ -19,3 +19,12 @@
 
 # Go workspace file
 go.work
+
+bazel-bin
+bazel-multi-language-bazel-monorepo
+bazel-out
+bazel-testlogs
+
+__pycache__
+
+node_modules
