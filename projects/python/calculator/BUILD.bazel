@@ -1,0 +1,5 @@
+py_library(
+    name = "calculator",
+    srcs = ["calculator.py"],
+    visibility = ["//projects/python/app:__pkg__"],
+)
