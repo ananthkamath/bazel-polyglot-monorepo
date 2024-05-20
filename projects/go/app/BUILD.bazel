@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+# load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+go_library(
+    name = "go_app_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/ananthkamath/bazel-polyglot-monorepo/projects/go/app",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//projects/go/greeting",
+        "@com_github_gorilla_mux//:mux",
+    ],
+)
+
+go_binary(
+    name = "go_app",
+    embed = [":go_app_lib"],
+    visibility = ["//visibility:public"],
+)
