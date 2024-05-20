@@ -13,7 +13,7 @@ go_library(
 )
 
 go_binary(
-    name = "go_app",
+    name = "app",
     embed = [":go_app_lib"],
     visibility = ["//visibility:public"],
 )
