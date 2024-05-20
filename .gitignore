@@ -21,7 +21,7 @@
 go.work
 
 bazel-bin
-bazel-multi-language-bazel-monorepo
+bazel-bazel-polyglot-monorepo
 bazel-out
 bazel-testlogs
 
