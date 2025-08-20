@@ -1,0 +1,29 @@
+name: Endor Labs - SCA Scan on Main Branch
+on:
+  push:
+    branches:
+      - 'main'
+    
+jobs:
+  scan-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22.0'
+      - name: Endor Labs SCA Scan
+        uses: endorlabs/github-action@main
+        with:
+          namespace: "ananth-learn"
+          api: "https://api.endorlabs.com"
+          pr: false
+          enable_github_action_token: true
+          scan_dependencies: true
+          additional_args: "--use-bazel --bazel-include-targets=//projects/go/app:app"
