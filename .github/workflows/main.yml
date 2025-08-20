@@ -2,7 +2,7 @@ name: Endor Labs - SCA Scan on Main Branch
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
     
 jobs:
   scan-repo:
