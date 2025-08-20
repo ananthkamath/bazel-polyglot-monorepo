@@ -26,4 +26,4 @@ jobs:
           pr: false
           enable_github_action_token: true
           scan_dependencies: true
-          additional_args: "--use-bazel --bazel-include-targets=//projects/go/app:app"
+          additional_args: "--use-bazel --bazel-include-targets=//projects/go/app:app,//projects/java/src/main/java/com/greeter/main:main"
