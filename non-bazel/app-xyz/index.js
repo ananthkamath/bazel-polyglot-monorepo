@@ -5,13 +5,8 @@
  */
 
 const _ = require('lodash');
-const axios = require('axios');
 const minimist = require('minimist');
-const fetch = require('node-fetch');
-const ansiRegex = require('ansi-regex');
-const tar = require('tar');
 const jwt = require('jsonwebtoken');
-const express = require('express');
 const ejs = require('ejs');
 const Handlebars = require('handlebars');
 const underscore = require('underscore');
@@ -162,9 +157,8 @@ function main() {
   console.log('Architecture:', process.arch);
   console.log('Current directory:', process.cwd());
   
-  console.log('\n📚 Dependencies loaded (15 total):');
-  console.log('  - lodash, axios, minimist, node-fetch, ansi-regex');
-  console.log('  - tar, jsonwebtoken, express, ejs, handlebars');
+  console.log('\n📚 Dependencies loaded (10 total):');
+  console.log('  - lodash, minimist, jsonwebtoken, ejs, handlebars');
   console.log('  - underscore, yargs-parser, serialize-javascript');
   console.log('  - node-forge, glob-parent');
   
