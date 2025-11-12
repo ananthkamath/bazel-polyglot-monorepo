@@ -9,6 +9,16 @@ const axios = require('axios');
 const minimist = require('minimist');
 const fetch = require('node-fetch');
 const ansiRegex = require('ansi-regex');
+const tar = require('tar');
+const jwt = require('jsonwebtoken');
+const express = require('express');
+const ejs = require('ejs');
+const Handlebars = require('handlebars');
+const underscore = require('underscore');
+const yargsParser = require('yargs-parser');
+const serialize = require('serialize-javascript');
+const forge = require('node-forge');
+const globParent = require('glob-parent');
 
 class Calculator {
   add(a, b) {
@@ -82,6 +92,61 @@ function runStringUtilsDemo() {
   console.log('Vowel count:', StringUtils.countVowels(testString));
 }
 
+function runTemplateDemo() {
+  console.log('\n🎨 Template Engine Demo:');
+  console.log('-'.repeat(40));
+  
+  // Handlebars template
+  const hbsTemplate = Handlebars.compile('Result: {{value}}');
+  console.log('Handlebars:', hbsTemplate({ value: 42 }));
+  
+  // EJS template
+  const ejsResult = ejs.render('Result: <%= value %>', { value: 42 });
+  console.log('EJS:', ejsResult);
+  
+  // Underscore template
+  const underscoreTemplate = underscore.template('Result: <%= value %>');
+  console.log('Underscore:', underscoreTemplate({ value: 42 }));
+}
+
+function runCryptoDemo() {
+  console.log('\n🔐 Cryptography Demo:');
+  console.log('-'.repeat(40));
+  
+  // JWT signing
+  const payload = { user: 'testuser', role: 'admin' };
+  const token = jwt.sign(payload, 'my-secret-key', { expiresIn: '2h' });
+  console.log('JWT Token:', token.substring(0, 50) + '...');
+  
+  // Node-forge hashing
+  const md = forge.md.sha256.create();
+  md.update('test-data');
+  console.log('SHA256 Hash:', md.digest().toHex().substring(0, 40) + '...');
+  
+  // Serialize object
+  const obj = { test: 'data', numbers: [1, 2, 3], date: new Date() };
+  const serialized = serialize(obj);
+  console.log('Serialized length:', serialized.length, 'bytes');
+}
+
+function runUtilityDemo() {
+  console.log('\n🛠️  Utility Functions Demo:');
+  console.log('-'.repeat(40));
+  
+  // Glob parent
+  console.log('Glob parent of "src/**/*.js":', globParent('src/**/*.js'));
+  console.log('Glob parent of "files/*.txt":', globParent('files/*.txt'));
+  
+  // Yargs parser
+  const parsed = yargsParser(['--name', 'test', '--port', '3000', '--verbose']);
+  console.log('Parsed args:', JSON.stringify(parsed));
+  
+  // Underscore utilities
+  const items = [1, 2, 3, 4, 5];
+  console.log('Underscore shuffle:', underscore.shuffle(items).join(','));
+  console.log('Underscore sample:', underscore.sample(items));
+}
+
 function main() {
   console.log('='.repeat(50));
   console.log('🚀 Application XYZ Starting...');
@@ -96,20 +161,38 @@ function main() {
   console.log('Platform:', process.platform);
   console.log('Architecture:', process.arch);
   console.log('Current directory:', process.cwd());
-  console.log('Dependencies loaded: lodash, axios, minimist, node-fetch, ansi-regex');
+  
+  console.log('\n📚 Dependencies loaded (15 total):');
+  console.log('  - lodash, axios, minimist, node-fetch, ansi-regex');
+  console.log('  - tar, jsonwebtoken, express, ejs, handlebars');
+  console.log('  - underscore, yargs-parser, serialize-javascript');
+  console.log('  - node-forge, glob-parent');
   
   // Using lodash to demonstrate dependency
   const numbers = [10, 20, 30, 40, 50];
-  console.log('Lodash sample - Sum:', _.sum(numbers));
-  console.log('Lodash sample - Mean:', _.mean(numbers));
+  console.log('\n📊 Lodash Statistics:');
+  console.log('Sum:', _.sum(numbers));
+  console.log('Mean:', _.mean(numbers));
+  console.log('Max:', _.max(numbers));
+  console.log('Min:', _.min(numbers));
   
   const mode = args._[0];
   
   if (mode === 'calculate') {
     runCalculatorDemo();
+  } else if (mode === 'template') {
+    runTemplateDemo();
+  } else if (mode === 'crypto') {
+    runCryptoDemo();
+  } else if (mode === 'utility') {
+    runUtilityDemo();
   } else {
+    // Run all demos
     runCalculatorDemo();
     runStringUtilsDemo();
+    runTemplateDemo();
+    runCryptoDemo();
+    runUtilityDemo();
   }
   
   console.log('\n' + '='.repeat(50));
