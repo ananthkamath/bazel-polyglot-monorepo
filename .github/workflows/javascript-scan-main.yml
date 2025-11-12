@@ -3,7 +3,7 @@ name: JavaScript Security Scan - Main Branch
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - '**/*.js'
       - '**/package.json'

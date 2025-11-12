@@ -3,7 +3,7 @@ name: JavaScript Security Scan - Pull Request
 on:
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - '**/*.js'
       - '**/package.json'
