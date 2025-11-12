@@ -16,7 +16,7 @@ class Greeter {
   }
 
   greet() {
-    return `Hello from App ABC, ${this.name}!`;
+    return `Hello from App ABC!, ${this.name}!`;
   }
 
   getFancyGreeting() {
