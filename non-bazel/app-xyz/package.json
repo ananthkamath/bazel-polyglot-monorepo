@@ -1,0 +1,27 @@
+{
+  "name": "app-xyz",
+  "version": "1.0.0",
+  "description": "JavaScript application XYZ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "calculate": "node index.js calculate"
+  },
+  "engines": {
+    "node": "24.4.1",
+    "pnpm": "10.13.1"
+  },
+  "packageManager": "pnpm@10.13.1",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "axios": "0.18.0",
+    "minimist": "1.2.0",
+    "node-fetch": "2.6.0",
+    "ansi-regex": "3.0.0"
+  }
+}
+
