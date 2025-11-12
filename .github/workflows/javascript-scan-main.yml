@@ -1,0 +1,61 @@
+name: JavaScript Security Scan - Main Branch
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.js'
+      - '**/package.json'
+      - '**/pnpm-lock.yaml'
+      - '**/.nvmrc'
+      - '.github/workflows/javascript-scan-main.yml'
+
+jobs:
+  endor-scan:
+    name: Run Endor Labs Security Scan For Javascript Applications
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.4.1'
+          
+      - name: Enable Corepack
+        run: corepack enable
+        
+      - name: Setup pnpm
+        run: corepack prepare pnpm@10.13.1 --activate
+        
+      - name: Verify Node and pnpm versions
+        run: |
+          echo "Node version: $(node --version)"
+          echo "pnpm version: $(pnpm --version)"
+
+      # - name: Install dependencies - app-abc
+      #   working-directory: non-bazel/app-abc
+      #   run: pnpm install --frozen-lockfile
+
+      # - name: Install dependencies - app-xyz
+      #   working-directory: non-bazel/app-xyz
+      #   run: pnpm install --frozen-lockfile
+
+      - name: Endor Labs SCA Scan
+        uses: endorlabs/github-action@main
+        with:
+          namespace: "ananth-learn"
+          api: "https://api.endorlabs.com"
+          pr: false
+          enable_github_action_token: true
+          scan_dependencies: true
+          additional_args: "--languages=javascript"
+          
