@@ -1,0 +1,4 @@
+packages:
+  - 'non-bazel/app-abc'
+  - 'non-bazel/app-xyz'
+
