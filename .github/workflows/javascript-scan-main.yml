@@ -51,6 +51,8 @@ jobs:
 
       - name: Endor Labs SCA Scan
         uses: endorlabs/github-action@main
+        env:
+          ENDOR_PNPM_ENABLED: true
         with:
           namespace: "ananth-learn"
           api: "https://api.endorlabs.com"
